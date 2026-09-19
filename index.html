@@ -189,7 +189,7 @@
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">Request a Quote →</a>
-            <a class="btn btn-outline" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp Us</a>
+            <a class="btn btn-outline" href="https://wa.me/917020722020" target="_blank" rel="noopener">WhatsApp Us</a>
           </div>
           <div class="hero-note">
             <div><strong>India</strong>Source location</div>
@@ -317,23 +317,49 @@
             <div class="contact-item"><small>Business</small><strong>AJINKYA GLOBAL EXIM</strong></div>
             <div class="contact-item"><small>Proprietor</small><strong>Ajinkya Metkari</strong></div>
             <div class="contact-item"><small>Location</small><strong>Sangli, Maharashtra, India</strong></div>
-            <div class="contact-item"><small>Email</small><strong>sales@yourdomain.com</strong></div>
-          </div>
+<div class="contact-item"><small>Email</small><strong>ajinkyaglobalexim@gmail.com</strong></div>          </div>
         </div>
         <div class="contact-card">
-          <form onsubmit="sendInquiry(event)">
-            <div><label for="name">Your name *</label><input id="name" required placeholder="Full name"></div>
-            <div><label for="company">Company name *</label><input id="company" required placeholder="Company / business name"></div>
-            <div><label for="email">Email *</label><input id="email" type="email" required placeholder="name@company.com"></div>
-            <div><label for="quantity">Required quantity</label>
-              <select id="quantity">
-                <option>Not decided yet</option><option>100–500 kg</option><option>500 kg–1 tonne</option><option>1–5 tonnes</option><option>5+ tonnes</option>
-              </select>
-            </div>
-            <div><label for="message">Your requirement</label><textarea id="message" placeholder="Destination, specifications, packaging, and other details"></textarea></div>
-            <button class="btn btn-primary" type="submit">Send Inquiry →</button>
-            <p class="tiny">This form opens your email application. Replace the email address in the script before publishing.</p>
-          </form>
+      <form action="https://formspree.io/f/xyezzryp" method="POST">
+  <div>
+    <label for="name">Your name *</label>
+    <input id="name" name="name" required placeholder="Full name">
+  </div>
+
+  <div>
+    <label for="company">Company name *</label>
+    <input id="company" name="company" required placeholder="Company / business name">
+  </div>
+
+  <div>
+    <label for="email">Email *</label>
+    <input id="email" name="email" type="email" required placeholder="name@company.com">
+  </div>
+
+  <div>
+    <label for="quantity">Required quantity</label>
+    <select id="quantity" name="quantity">
+      <option>Not decided yet</option>
+      <option>100–500 kg</option>
+      <option>500 kg–1 tonne</option>
+      <option>1–5 tonnes</option>
+      <option>5+ tonnes</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="message">Your requirement</label>
+    <textarea id="message" name="message" placeholder="Destination, specifications, packaging, and other details"></textarea>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Send Inquiry by Email →</button>
+
+  <button class="btn btn-outline" type="button" onclick="sendWhatsAppInquiry()">
+    Send Inquiry on WhatsApp →
+  </button>
+
+  <p class="tiny">Choose Email or WhatsApp to send your inquiry.</p>
+</form>
         </div>
       </div>
     </section>
@@ -352,25 +378,33 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    function sendInquiry(event) {
-      event.preventDefault();
-      const recipient = "sales@yourdomain.com"; // CHANGE THIS to your real email address.
-      const name = document.getElementById("name").value;
-      const company = document.getElementById("company").value;
-      const email = document.getElementById("email").value;
-      const quantity = document.getElementById("quantity").value;
-      const message = document.getElementById("message").value;
+   function sendWhatsAppInquiry() {
+  const name = document.getElementById("name").value;
+  const company = document.getElementById("company").value;
+  const email = document.getElementById("email").value;
+  const quantity = document.getElementById("quantity").value;
+  const message = document.getElementById("message").value;
 
-      const subject = encodeURIComponent("Turmeric Finger Inquiry - " + company);
-      const body = encodeURIComponent(
-        "Name: " + name + "\n" +
-        "Company: " + company + "\n" +
-        "Email: " + email + "\n" +
-        "Quantity: " + quantity + "\n\n" +
-        "Requirement:\n" + message
-      );
-      window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + body;
-    }
+  if (!name || !company || !email) {
+    alert("Please enter your name, company name, and email.");
+    return;
+  }
+
+  const whatsappMessage =
+    "Hello AJINKYA GLOBAL EXIM,\n\n" +
+    "I am interested in Indian turmeric finger.\n\n" +
+    "Name: " + name + "\n" +
+    "Company: " + company + "\n" +
+    "Email: " + email + "\n" +
+    "Quantity: " + quantity + "\n\n" +
+    "Requirement:\n" + message;
+
+  window.open(
+    "https://wa.me/917020722020?text=" +
+    encodeURIComponent(whatsappMessage),
+    "_blank"
+  );
+}
   </script>
 </body>
 </html>
